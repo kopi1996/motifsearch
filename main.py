@@ -1,10 +1,10 @@
 import itertools
 
-DNA = ["accaccggataggctgcttattaggtccaaaaggtagtatcgtaataatggctcagccatgtctgtgcggcattccac",
+dnastring = ["accaccggataggctgcttattaggtccaaaaggtagtatcgtaataatggctcagccatgtctgtgcggcattccac",
        "gaaatggttcggtgcgatatcaggccgttctcttaacttggcggtgcagatccgaacgtctggaggggtcgtgcgcta",
        "atgtatactagacattctaacgctcgcttattggcggagaccatttgctccactacaaggctactgtgtagatccgta"
         ,"ctacctatgtaaaacaacatctactaacgtagtccggtctttcctgatctgccctaacctacaggtcgatccgaaattcg"
-       ]
+             ]
 
 
 
@@ -14,9 +14,9 @@ l = 8
 
 
 
-def score(DNA, s):
+def score(dnastring, s):
     diffArr = ['a', 'c', 'g', 't']
-    arr = find_matrix(DNA, s)
+    arr = find_matrix(dnastring, s)
 
     valueMatrix = initailize_value_matrix(diffArr)
 
@@ -53,10 +53,10 @@ def initailize_value_matrix(diffArr):
     return valueMatrix
 
 
-def find_matrix(DNA, s):
+def find_matrix(dnastring, s):
     arr = []
     k = 0
-    for d in DNA:
+    for d in dnastring:
         tempArr = []
         for w in d[s[k]:s[k] + l]:
             tempArr.append(w)
@@ -66,7 +66,7 @@ def find_matrix(DNA, s):
     return arr
 
 
-def brute_force(DNA, t, n, l):
+def brute_force(dnastring, t, n, l):
 
     data = itertools.product(range(n - l+1), repeat=t)
 
@@ -74,7 +74,7 @@ def brute_force(DNA, t, n, l):
     bestMotif = []
     for s in data:
 
-        sco = score(DNA, s)
+        sco = score(dnastring, s)
         if sco > bestScore:
             bestMotif = s
             bestScore = sco
@@ -85,4 +85,4 @@ def brute_force(DNA, t, n, l):
     return bestMotif
 
 
-brute_force(DNA, t, n, l)
+brute_force(dnastring, t, n, l)
